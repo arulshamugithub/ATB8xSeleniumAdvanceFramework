@@ -1,9 +1,11 @@
 package com.thetestingacademy.pages.pageObjectModel;
 
+import com.thetestingacademy.base.CommonToAllPage;
+import com.thetestingacademy.utils.PropertiesReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Loginpage_POM {
+public class Loginpage_POM extends CommonToAllPage {
 
     WebDriver driver;
 
@@ -22,9 +24,10 @@ public class Loginpage_POM {
    //page actions
 
    public String loginToVWOLoginInvalidCreds(String user, String pwd){
-     driver.findElement(username).sendKeys(user);
-     driver.findElement(password).sendKeys(pwd);
-     driver.findElement(signButton).click();
+     driver.get(PropertiesReader.readKey("url"));
+     enterInput(username,user);
+     enterInput(password,pwd);
+     clickElement(signButton);
        try {
            Thread.sleep(3000);
        } catch (InterruptedException e) {
